@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class CarSystemControl : MonoBehaviour
 {
-    public TypeTransmissionEnum typeOfTransmission;
-    public float maxSteerAngle = 30;
-    public float topSpeed = 220;
-    public int maxGear = 5;
-    public float maxRpm = 100;
-    public float maxPitch = 1.5f;
-    public float helperAngle;
-    public float velocityKMPH;
-    CarsTractionWheels carTractionWheels;
+  public TypeTransmissionEnum typeOfTransmission;
+  public float maxSteerAngle = 30;
+  public float topSpeed = 220;
+  public int maxGear = 5;
+  public float maxRpm = 100;
+  public float maxPitch = 1.5f;
+  public float helperAngle;
+  public float velocityKMPH;
 
 
-    public int automaticGear;
 
-    void Awake()
+  public int automaticGear;
+
+  void Awake()
+  {
+
+    if (typeOfTransmission == TypeTransmissionEnum.automatic)
     {
-        carTractionWheels = GameObject.Find("WheelColliders").GetComponent<CarsTractionWheels>();
-        if(typeOfTransmission == TypeTransmissionEnum.automatic)
-        {
-           automaticGear = 1;
-        }
-        else
-        {
-            automaticGear = 0;
-        }
+      automaticGear = 1;
     }
-
-    public enum TypeTransmissionEnum 
+    else
     {
-        automatic,
-        manual
-    };
+      automaticGear = 0;
+    }
+  }
+
+  public enum TypeTransmissionEnum
+  {
+    automatic,
+    manual
+  };
 
 }
