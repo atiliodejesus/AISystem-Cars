@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3462187864193147876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8520450365644431622}
+  - component: {fileID: 793816445184526558}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Data
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8520450365644431622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3462187864193147876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 78, y: 11, z: 127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &793816445184526558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3462187864193147876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823772b3a6a3ca5429cd2765298fe233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsOfCars:
+  - {fileID: 2207357071466760423, guid: 00f81a62afab6fa4cb8dd02c8c85b5ee, type: 3}
+  - {fileID: 7882665747109412225, guid: 167dd39ecfa69664290f204e464d4672, type: 3}
+  - {fileID: 3312614128680479427, guid: ed2dae6cea032ba42972a7e2fc445045, type: 3}
+  - {fileID: 6308294034189577261, guid: 7dc11463e6dd4844eaa46bfcf5a5986f, type: 3}
+  - {fileID: 3372228143189221647, guid: c24fd370cf1d8b64fb375a1423c339ae, type: 3}
+  - {fileID: 828180612494607307, guid: d17b316fce49b2440ab73d752c15880f, type: 3}
+  - {fileID: 4483650253414911576, guid: 50adf90fdc044e644b7a7c17395d0e1b, type: 3}
+  - {fileID: 6177188997372129052, guid: c443a6e955c846342a86d86cc6f6473f, type: 3}
+  - {fileID: 4646333433471828301, guid: 213c0f7731654484a82e718c16591410, type: 3}
+  thumbOfStaticCars:
+  - {fileID: 2800000, guid: 994b8bae01e087544aca7ef0fe091c23, type: 3}
+  - {fileID: 2800000, guid: 083e16e8da03d794899bf0b73bae7076, type: 3}
+  - {fileID: 2800000, guid: 4b848cba842aeb04695dab580618f82f, type: 3}
+  - {fileID: 2800000, guid: cfe852902ad21e64da9691651e0bc0ed, type: 3}
+  - {fileID: 2800000, guid: 5f459269fa13e934d94299d89bf90c8f, type: 3}
+  - {fileID: 2800000, guid: 6ff2f498366e8e941ad556e489563b6b, type: 3}
+  - {fileID: 2800000, guid: 71a2d12d6322bc44683a990efa54e431, type: 3}
+  - {fileID: 2800000, guid: 609717affc93e8e44958b9535e50c39f, type: 3}
+  draw: 0
