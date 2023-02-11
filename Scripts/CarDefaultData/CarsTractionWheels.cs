@@ -280,15 +280,15 @@ public class CarsTractionWheels : MonoBehaviour
       {
         actualGear = 0;
       }
-
-      if (manualTransmisson && input.TransmissionInput() == 1 && !wait)
-      {
-        StartCoroutine("AddGear");
-      }
-      if (manualTransmisson && input.TransmissionInput() == -1 && !wait)
-      {
-        StartCoroutine("ReduceGear");
-      }
+      /*
+            if (manualTransmisson && input.TransmissionInput() == 1 && !wait)
+            {
+              StartCoroutine("AddGear");
+            }
+            if (manualTransmisson && input.TransmissionInput() == -1 && !wait)
+            {
+              StartCoroutine("ReduceGear");
+            }*/
     }
   }
 
