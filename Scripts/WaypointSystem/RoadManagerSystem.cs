@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,7 +19,7 @@ public class RoadManagerSystem : MonoBehaviour
   public float editorVisualisationSubsteps = 100;
   public float Length { get; private set; }
 
-  public Transform[] Waypoints
+  public List<Transform> Waypoints
   {
     get { return waypointList.items; }
   }
@@ -38,11 +39,11 @@ public class RoadManagerSystem : MonoBehaviour
   // Use this for initialization
   private void Awake()
   {
-    if (Waypoints.Length > 1)
+    if (Waypoints.Count > 1)
     {
       CachePositionsAndDistances();
     }
-    numPoints = Waypoints.Length;
+    numPoints = Waypoints.Count;
   }
 
 
@@ -129,19 +130,19 @@ public class RoadManagerSystem : MonoBehaviour
   {
     // transfer the position of each point and distances between points to arrays for
     // speed of lookup at runtime
-    points = new Vector3[Waypoints.Length + 1];
-    distances = new float[Waypoints.Length + 1];
+    points = new Vector3[Waypoints.Count + 1];
+    distances = new float[Waypoints.Count + 1];
 
     float accumulateDistance = 0;
     for (int i = 0; i < points.Length; ++i)
     {
-      var t1 = Waypoints[(i) % Waypoints.Length];
-      var t2 = Waypoints[(i + 1) % Waypoints.Length];
+      var t1 = Waypoints[(i) % Waypoints.Count];
+      var t2 = Waypoints[(i + 1) % Waypoints.Count];
       if (t1 != null && t2 != null)
       {
         Vector3 p1 = t1.position;
         Vector3 p2 = t2.position;
-        points[i] = Waypoints[i % Waypoints.Length].position;
+        points[i] = Waypoints[i % Waypoints.Count].position;
         distances[i] = accumulateDistance;
         accumulateDistance += (p1 - p2).magnitude;
       }
@@ -164,9 +165,9 @@ public class RoadManagerSystem : MonoBehaviour
   private void DrawGizmos(bool selected)
   {
     waypointList.circuit = this;
-    if (Waypoints.Length > 1)
+    if (Waypoints.Count > 1)
     {
-      numPoints = Waypoints.Length;
+      numPoints = Waypoints.Count;
 
       CachePositionsAndDistances();
       Length = distances[distances.Length - 1];
@@ -185,9 +186,9 @@ public class RoadManagerSystem : MonoBehaviour
       }
       else
       {
-        for (int n = 0; n < Waypoints.Length; ++n)
+        for (int n = 0; n < Waypoints.Count; ++n)
         {
-          Vector3 next = Waypoints[(n + 1) % Waypoints.Length].position;
+          Vector3 next = Waypoints[(n + 1) % Waypoints.Count].position;
           Gizmos.DrawLine(prev, next);
           prev = next;
         }
@@ -200,7 +201,7 @@ public class RoadManagerSystem : MonoBehaviour
   public class WaypointList
   {
     public RoadManagerSystem circuit;
-    public Transform[] items = new Transform[0];
+    public List<Transform> items;
   }
 
   public struct RoutePoint
@@ -221,8 +222,8 @@ public class RoadManagerSystem : MonoBehaviour
 [CustomPropertyDrawer(typeof(RoadManagerSystem.WaypointList))]
 public class WaypointListDrawing : PropertyDrawer
 {
-  private float lineHeight = 18;
-  private float spacing = 4;
+  private float lineHeight = 22;
+  private float spacing = 5;
 
 
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -332,7 +333,7 @@ public class WaypointListDrawing : PropertyDrawer
         children[n++] = child;
       }
       Array.Sort(children, new TransformNameComparer());
-      circuit.waypointList.items = new Transform[children.Length];
+      circuit.waypointList.items.ToArray().SetValue(new Transform[children.Length], children.Length);
       for (n = 0; n < children.Length; ++n)
       {
         circuit.waypointList.items[n] = children[n];
@@ -352,6 +353,13 @@ public class WaypointListDrawing : PropertyDrawer
       }
     }
     y += lineHeight + spacing;
+
+    var renameButtonRect2 = new Rect(x, y, inspectorWidth, lineHeight);
+    if (GUI.Button(renameButtonRect2, "Inverter A Ordem"))
+    {
+      var circuit = property.FindPropertyRelative("circuit").objectReferenceValue as RoadManagerSystem;
+      circuit.Waypoints.Reverse();
+    }
 
     // Set indent back to what it was
     EditorGUI.indentLevel = indent;

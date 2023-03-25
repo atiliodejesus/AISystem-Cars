@@ -116,7 +116,7 @@ public class ProgressTracker : MonoBehaviour
       Vector3 targetDelta = target.position - transform.position;
       if (targetDelta.magnitude < pointToPointThreshold)
       {
-        progressNum = (progressNum + 1) % circuit.Waypoints.Length;
+        progressNum = (progressNum + 1) % circuit.Waypoints.Count;
       }
 
 

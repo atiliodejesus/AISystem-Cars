@@ -29,6 +29,9 @@ public class CarAISystem : MonoBehaviour
   ProgressTracker tracker;
   public bool stop;
   public bool obstacle;
+  public float timeForReset = 5f;
+  bool waitReset;
+
   public CollisionDetection detection;
   private void Awake()
   {
@@ -46,6 +49,17 @@ public class CarAISystem : MonoBehaviour
     SensorDetect();
   }
 
+  public void RestTime()
+  {
+    waitReset = true;
+    StartCoroutine("resetTime");
+  }
+
+  IEnumerator resetTime()
+  {
+    yield return new WaitForSeconds(timeForReset);
+    waitReset = false;
+  }
 
   void SensorDetect()
   {
@@ -167,7 +181,7 @@ public class CarAISystem : MonoBehaviour
     if ((other.gameObject.tag == "RCSystemAI" || other.gameObject.tag == "RCSystem") && detection.have)
     {
       obstacle = true;
-      Debug.Log("St");
+      Debug.Log("SColid Obst:" + obstacle + " Detc:" + detection.have);
     }
   }
   private void OnTriggerExit(Collider other)

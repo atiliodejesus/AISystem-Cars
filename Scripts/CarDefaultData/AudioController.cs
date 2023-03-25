@@ -10,6 +10,7 @@ public class AudioController : MonoBehaviour
   float[] velocitiesBox = { 45, 80, 120, 170 };
   Rigidbody rb;
   int index = 1;
+
   private void Start()
   {
     rb = transform.parent.GetComponent<Rigidbody>();
@@ -19,7 +20,10 @@ public class AudioController : MonoBehaviour
   void Update()
   {
     AudioControllerBase();
+
   }
+
+
 
   private void AudioControllerBase()
   {
